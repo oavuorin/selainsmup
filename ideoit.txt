@@ -1,0 +1,22 @@
+stagessa tulee siis olla lista vihollisista ja naiden spawnausajoista.
+
+siis tyyliin:
+vihu1: 300 ms
+vihu2, 3 & 4, 600 ms
+vihu7: 800 ms
+
+jne...
+
+Toinen tapa toteuttaa stage voisi olla se, etta stage on lista eventteja, jotka triggeroityy maaratylla hetkella. eventit triggeroityisi joko kuluneen ajan myota tai kun aiempi eventti on voitettu tms. Tai kaksi eri moodia: bossimoodi (seuraava eventti tulee vasta kun aiempi on voitettu) ja stagemoodi (eventit tapahtuvat ajan myota automaagisesti).
+
+vihun sisalla tulee olla taman liikerata ym. statsit.
+
+vihussa 
+
+Stage: lista waveja joilla on triggeroitymishetki
+
+Wave: lista vihollisista joilla on spawnauspaikka, liikerata.
+
+Siispa game tavallaan imee stagesta ne wavet ja naiden esiintymishetket...
+Kun on hetki jolloin waven tulee triggeroitya, game kay waven sisaltaman vihollislistan lapi ja lisaa ne pelikentalle.
+
