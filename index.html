@@ -130,10 +130,9 @@
             });
         }
 
-        function spawnEnemies() {
-            var enemy = enemies.create(game.world.centerX, 0, 'enemy');
-            enemy.path = createEnemyPath([200, 300, 100, 200], [0, 100, 200, 400]);
-            game.debug.text(enemy.path[0].x, 100, 100);
+        function spawnEnemy(path) {
+            var enemy = enemies.create(path[0][0], path[1][0], 'enemy');
+            enemy.path = createEnemyPath(path[0], path[1]);
             enemy.pi = 0;
         }
 
@@ -143,15 +142,12 @@
         }
 
         function createEnemyPath(xPoints, yPoints) {
-            var x = xPoints;
-            var y = yPoints;
-
             var path = [];
             var stops = 1 / game.width;
 
             for (var i = 0; i <= 1; i += stops) {
-                var px = Phaser.Math.catmullRomInterpolation(x, i);
-                var py = Phaser.Math.catmullRomInterpolation(y, i);
+                var px = Phaser.Math.catmullRomInterpolation(xPoints, i);
+                var py = Phaser.Math.catmullRomInterpolation(yPoints, i);
                 
                 path.push({ x: px, y: py});
             }
@@ -172,10 +168,17 @@
             });
         }
 
+        function spawnWave(wave) {
+            for (var enemy = 0; enemy < wave.length; enemy++) {
+                //
+            }
+
+        }
+
         function createWaveEvents() {
-            gameTimer.add(Phaser.Timer.SECOND * 0.5, spawnEnemies, this);
-            gameTimer.add(Phaser.Timer.SECOND * 1.5, spawnEnemies, this);
-            gameTimer.add(Phaser.Timer.SECOND * 2.5, spawnEnemies, this);
+            gameTimer.add(Phaser.Timer.SECOND * 0.5, spawnEnemy, this, [[200, 300, 100, 200], [0, 100, 200, 400]]);
+            gameTimer.add(Phaser.Timer.SECOND * 1.5, spawnEnemy, this, [[200, 300, 100, 200], [0, 100, 200, 400]]);
+            gameTimer.add(Phaser.Timer.SECOND * 2.5, spawnEnemy, this, [[200, 300, 100, 200], [0, 100, 200, 400]]);
         }
     };
 
